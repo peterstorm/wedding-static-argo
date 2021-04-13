@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wedding-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wedding 
+  template:
+    metadata:
+      labels:
+        app: wedding 
+    spec:
+      containers:
+        - name: wedding
+          image: peterstormio/wedding
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: wedding-service
+spec:
+  selector:
+    app: wedding 
+  ports:
+    - name: wedding 
+      protocol: TCP
+      port: 3000
+      targetPort: 80
