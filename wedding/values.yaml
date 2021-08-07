@@ -4,4 +4,4 @@
 replicaCount: 1
 image:
   repository: peterstormio/wedding
-  tag: "b0eabfbb537fb32e15f590cde58aa2a671164123"
+  tag: "b4484fb810b04c318c7890175749795cb2af0530"
