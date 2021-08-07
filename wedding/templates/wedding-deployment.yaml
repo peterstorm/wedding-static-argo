@@ -6,24 +6,11 @@ spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: {{- include "wedding.selectorLabels" . }}
+      app: wedding
   template:
     metadata:
       labels:
-        app: {{- include "wedding.selectorLabels" . }}
+        app: wedding
     spec:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
---
-apiVersion: v1
-kind: Service
-metadata:
-  name: {{ include "wedding.fullname" . }}-service
-spec:
-  selector:
-    app: {{- include "wedding.selectorLabels" . }}
-  ports:
-    - name: {{ include "wedding.fullname" . }}
-      protocol: TCP
-      port: 3000
-      targetPort: 80
