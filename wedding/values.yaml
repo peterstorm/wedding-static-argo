@@ -1,10 +1,7 @@
 # Default values for wedding.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
-
 replicaCount: 1
-
 image:
   repository: peterstormio/wedding
-  tag: ""
-
+  tag: "c31b2200b0a8868153222229abd8bf3ac9c4ef03"
