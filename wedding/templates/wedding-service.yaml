@@ -6,7 +6,7 @@ spec:
   selector:
     app: wedding
   ports:
-    - name: wedding
-      protocol: TCP
-      port: 3000
-      targetPort: 80
+  - name: wedding
+    protocol: TCP
+    port: 3000
+    targetPort: 80

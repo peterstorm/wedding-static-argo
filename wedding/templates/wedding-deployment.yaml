@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "wedding.fullname" . }}-deployment
+  name: wedding-deployment
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
@@ -12,5 +12,6 @@ spec:
       labels:
         app: wedding
     spec:
-        - name: {{ .Chart.Name }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+      containers:
+      - name: {{ .Chart.Name }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
