@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "wedding.fullname" . }}-deployment
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{- include "wedding.selectorLabels" . }}
+  template:
+    metadata:
+      labels:
+        app: {{- include "wedding.selectorLabels" . }}
+    spec:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+--
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "wedding.fullname" . }}-service
+spec:
+  selector:
+    app: {{- include "wedding.selectorLabels" . }}
+  ports:
+    - name: {{ include "wedding.fullname" . }}
+      protocol: TCP
+      port: 3000
+      targetPort: 80
